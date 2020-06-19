@@ -93,20 +93,22 @@ class SortingRobot:
         return self._light == "ON"
 
     def sort(self):
+        self.swap_item()
+
         while l is not None:
-            if self.can_move_right:
-                self.move_right
+            while self.can_move_right():
+                self.move_right()
                 if self.compare_item == 1:
-                    self.swap_item
+                    self.swap_item()
                 else: 
-                    self.compare_item == -1
+                    self.compare_item() == -1
                     pass
-            elif self.can_move_left:
-                self.move_left
-                if self.compare_item == -1:
-                    self.swap_item
-                else:
-                    self.compare_item == 1
+            while self.compare_item() is not None:
+                self.move_left()
+                self.swap_item()
+                if self.can_move_right() == True:
+                    self.move_right()
+                    self.swap_item()
 
 
 if __name__ == "__main__":
