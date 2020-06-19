@@ -95,20 +95,22 @@ class SortingRobot:
     def sort(self):
         self.swap_item()
 
-        while l is not None:
+        while True:
             while self.can_move_right():
+                self.swap_item
                 self.move_right()
                 if self.compare_item == 1:
                     self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
                 else: 
-                    self.compare_item() == -1
-                    pass
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
             while self.compare_item() is not None:
                 self.move_left()
-                self.swap_item()
-                if self.can_move_right() == True:
-                    self.move_right()
-                    self.swap_item()
+            self.swap_item()
 
 
 if __name__ == "__main__":
