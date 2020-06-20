@@ -93,25 +93,27 @@ class SortingRobot:
         return self._light == "ON"
 
     def sort(self):
+        # swap item to get the first item
         self.swap_item()
-
         while True:
+            # loop through right side 
             while self.can_move_right():
                 self.swap_item
                 self.move_right()
+                   # it item on right is greater, swap(move all the lower integers to the left)
                 if self.compare_item == 1:
                     self.swap_item()
                     self.move_left()
                     self.swap_item()
                     self.move_right()
+                    # if held item is less, move to the right 
                 else: 
                     self.move_left()
                     self.swap_item()
                     self.move_right()
+            # keep looping till we get none
             while self.compare_item() is not None:
                 self.move_left()
-            self.swap_item()
-
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
