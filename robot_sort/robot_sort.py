@@ -96,15 +96,46 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # set light on to start the loop
+        self.set_light_on()
+        while self.light_is_on():
+        # set light off because there hasn't been a swap yet
+            self.set_light_off()
+        # loop through the right side of held item
+        # if a a value on the right side is less then the held item
+        # swap
+        # set light on to indicate a swap
+            while self.can_move_right():
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.set_light_on()
+                    self.swap_item()
+        # loop through left side if item to the right of the held item is greater
+        # keep swapping the right value to the left if the right value is greater then 
+        # the left value
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                if self.compare_item() == -1:
+                    self.set_light_on()
+                    self.swap_item()
+                # move to the right element if its greater then swap the left value to the left
+                self.can_move_right()
+                self.move_right()
+                self.swap_item()
+                self.move_left()
+
+
+                
+
+                
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [2, 3, 0, 1, 4]
 
     robot = SortingRobot(l)
 
